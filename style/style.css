@@ -1,0 +1,216 @@
+html, body {
+    height: 100%; 
+    margin: 0;
+    padding: 0;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+	/* padding-bottom: 70px; */
+	
+}
+
+/* for a "transparent" background image
+body:after {
+    content : "";
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-image: url("../images/BlueOrigin_008.jpg"); 
+	background-size: 100%;
+	background-repeat: repeat;
+    width: 100%;
+    height: 100%;
+    opacity : 0.2;
+    z-index: -1;
+}
+*/
+
+.hidden {
+	visibility: hidden;
+}
+
+.font-awesome {
+	font-family: FontAwesome;
+}
+
+.content-wrapper {
+    height: -moz-calc(100% - 55px);
+    height: -webkit-calc(100% - 55px);
+    height: calc(100% - 55px);
+}
+
+.map-wrapper {
+	/* margin-right: 390px; */
+	height: 100%;
+	display: inline-block;
+	width: -moz-calc(100% - 390px);
+    width: -webkit-calc(100% - 390px);
+    width: calc(100% - 390px);
+}
+
+#map{
+    height: 100%;
+    z-index: 1;
+}
+
+#map > div > div:nth-child(1) > div:nth-child(3) {
+    box-shadow: inset 0 1px 10px #888888;
+}
+
+#legend, #cue {
+    background: rgba(255, 255, 255, 0.8);
+	padding: 10px;
+	/* border: 3px solid #000; */
+	overflow-y: auto;
+}
+
+#legend {
+	/* height: 300px; */
+}
+
+#legend p {
+	font-family: FontAwesome;
+	font-size: 1.5em;
+}
+
+#cue h2, #legend h3{
+	margin-top: 0;
+}
+
+#cue p {
+	margin-bottom: 0;
+}
+
+.masthead img{                     
+        width: 100%;       
+        background-repeat:no-repeat;
+}
+
+.banner-scrolled {
+	/* margin-bottom: 53px !important; */
+}
+
+#lpanel, #infoPanel{
+	/* background-color: rgba(33,47,131, 0.9) !important; */
+	height: 100%;
+}
+
+#infoPanel{
+	width: 390px;
+	/* display: inline-block */;
+	float: right;
+	/* position: absolute; */
+	/* right: 0; */
+	/* top: 100px; */
+	/* bottom: 0; */
+	-webkit-transition: width .3s;
+	transition: width .3s;
+	z-index: 21;
+	overflow-y: hidden;
+}
+
+#bizList {
+	height: 100%;
+	height: calc(100% - 46px);
+	overflow-y: scroll;
+	padding: 0 !important;
+}
+
+#infoPanel div{
+	line-height: normal;
+	border-bottom: 1px solid #ccc;
+	padding: 0 10px 10px 10px;
+}
+
+#ipHeader {
+	/* line-height: 99%; */
+	border-bottom: 3px solid #aaa !important;
+}
+
+#ipHeader h2 {
+	margin: 5px 0 0 0;
+}
+
+#ipHeader p {
+	margin: 0;
+}
+
+.ipFocus {
+  border: 1px solid rgb(86, 180, 239);
+  border-bottom: 1px solid rgb(86, 180, 239) !important;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.05) inset, 0px 0px 8px rgba(82, 168, 236, 0.6);
+}
+
+.navbar
+{
+	box-shadow: 0 1px 10px #888888;
+    margin-bottom: 0;
+	/* Moves it down# margin-top: -50px; */ 
+	z-index: 5;
+	width: 100%;
+	border-radius: 0px;
+	/* border:none; */
+}
+
+#actBtn a{
+	height: 2.4em;
+	padding-top: .5em;
+}
+
+.navbar-intro
+{
+	visibility: hidden;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    text-align: center;
+    margin:0 auto;
+	/* line-height: 99%; */
+}
+
+@media only screen and (min-width: 1000px){
+	.navbar-intro {
+		visibility: visible;
+	}
+}
+
+.navbar-intro h3 {
+	/* font-size: 2em; */
+	margin: 0;
+	margin-top: 5px;
+}
+
+.navbar-intro p {
+	margin: 0;
+	font-size: 12px;
+}
+
+.navbar-toggle {
+    z-index:3;
+}
+
+.navbar-brand {
+    padding-top: 10px;
+}
+
+/*
+.navbar-fixed {
+    top: 0;
+    z-index: 100;
+	position: fixed;
+    width: 100%;
+}
+*/
+
+.unslider-nav{
+	display:none;
+}
