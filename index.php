@@ -88,15 +88,13 @@
 		</div>
 
 		<div id="infoPanel">
-			<div id="ipHeader">
-				<h2>Business Directory</h2>
-			</div>
 			<div id="bizSearch" class="form-group">
 				<form class="form-inline">
 					<label for="search">Search:</label>
 					<input type="text" name="search" id="search" class="form-control">
 				</form>
 			</div>
+
 			<div id="bizList">
 			</div>
 		</div>
@@ -167,6 +165,10 @@
 		// for searching through business names
 		var allTitles = [];
 
+		var bizList = document.getElementById('bizList');
+		var bizDivHeight;
+
+
 		function initMap() {
 
 
@@ -204,7 +206,6 @@
 			});
 			*/
 		
-			var bizList = document.getElementById('bizList');
 			var infoModal = document.getElementsByClassName('modal-body')[0];
 			var placeService = new google.maps.places.PlacesService(map);
 			var geocoder = new google.maps.Geocoder();
@@ -450,9 +451,10 @@
 					"<h4><span class='font-awesome'>" + faSymbol + "</span> " + placeTitle.toCamel() + "</h4>" + 
 					"<p>" + address + "</p>" + 
 					"<p>Company size: " + coSize + "</p>";
-				
 				bizList.appendChild(bizDiv);
-				
+				bizDivHeight = bizDiv.getBoundingClientRect().height + 10;
+
+
 				// Highlighting corresponding controls
 					
 				// this happens whenever the mouse moves over a listing entry in the info panel
@@ -639,12 +641,15 @@
 			var searchBar = $("#search");
 			searchBar.on("keyup", function() {
 				var searchResult = new RegExp('^'+searchBar.val()+'.*', 'i');
-				console.log(searchResult);
+				var matches = [];
 				$.each(allTitles, function (title){
 					if (searchResult.test(allTitles[title])) {
-
+						matches.push(title);
+						
 					}
 				});
+				bizList.scrollTop = matches[0] * bizDivHeight;
+				console.log(bizDivHeight);
 			});
 		});
 	</script>

@@ -131,16 +131,16 @@ body:after {
 	padding: 0 10px 10px 10px;
 }
 
-#ipHeader {
+#bizSearch {
 	/* line-height: 99%; */
 	border-bottom: 3px solid #aaa !important;
 }
 
-#ipHeader h2 {
+#bizSearch h2 {
 	margin: 5px 0 0 0;
 }
 
-#ipHeader p {
+#bizSearch p {
 	margin: 0;
 }
 
