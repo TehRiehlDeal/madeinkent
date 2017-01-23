@@ -36,7 +36,7 @@
 	<!-- font-awesome -->
 	<script src="https://use.fontawesome.com/b74cf08957.js"></script>
 	
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVt8aXjF0XkGVkgeU0cyVAxkJT1EVulKc&libraries=places"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA5OUHz9sl_XvK32-ehqsYbV-dBFNj0OR8&libraries=places"></script>
 	
 	<script src="js/maplabel-compiled.js"></script>
 	
@@ -90,6 +90,12 @@
 		<div id="infoPanel">
 			<div id="ipHeader">
 				<h2>Business Directory</h2>
+			</div>
+			<div id="bizSearch" class="form-group">
+				<form class="form-inline">
+					<label for="search">Search:</label>
+					<input type="text" name="search" id="search" class="form-control">
+				</form>
 			</div>
 			<div id="bizList">
 			</div>
@@ -157,9 +163,13 @@
 		}
 		
 		var map;
-		
+
+		// for searching through business names
+		var allTitles = [];
+
 		function initMap() {
-			
+
+
 			map = new google.maps.Map(document.getElementById('map'), {
 				// centered on Kent valley 
 				center: new google.maps.LatLng(47.40924755801687, -122.24910480642092),
@@ -554,7 +564,9 @@
 				companySize = <?php echo '"', $companySize, '"'; ?>;
 				naics = <?php echo '"', $naics, '"'; ?>;
 				sic = <?php echo '"', $sic, '"'; ?>;
-				
+
+				allTitles.push(title);
+
 				/*
 				console.log("full and part: ");
 				console.log(<?php echo '"', intval($row['FULL']), '"'; ?>);
@@ -621,7 +633,21 @@
 			*/
         }
 		google.maps.event.addDomListener(window, 'load', initMap);
-    </script>
+
+		//search script
+		$(document).ready(function(){
+			var searchBar = $("#search");
+			searchBar.on("keyup", function() {
+				var searchResult = new RegExp('^'+searchBar.val()+'.*', 'i');
+				console.log(searchResult);
+				$.each(allTitles, function (title){
+					if (searchResult.test(allTitles[title])) {
+
+					}
+				});
+			});
+		});
+	</script>
 	
 	<script src="js/markerclusterer_compiled.js"></script>
 	
