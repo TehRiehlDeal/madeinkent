@@ -400,7 +400,7 @@
 						"<p>" + address + 
 						"</p>" + 
 						"<h4>Company size: " + coSize + "</h4>";
-					
+
 					$('#myModal').modal('show'); 
 					
 					//infoWindow.open(map, marker);
@@ -545,9 +545,9 @@
 		// takes business address and instantiates marker at the calculated coordinates.
 		<?php 
 			// FOR TESTING: LIMIT here will set the max number of rows to provide 
-			$sql = "SELECT `BUSINESS NAME`, `ADDRESS LINE 1`, `CITY, STATE & ZIPCODE`, `FULL`, `PART`, `SIC`, `NAICS`, `FACEBOOK`, `TWITTER`, `LINKEDIN`, `INSTAGRAM` FROM `kentbiz` WHERE (`NAICS` RLIKE '^3[1-3].*' OR `SIC` RLIKE '^[23].*') ORDER BY `BUSINESS NAME`";
+			$sql = "SELECT * FROM `kentbiz` WHERE (`NAICS` RLIKE '^3[1-3].*' OR `SIC` RLIKE '^[23].*') ORDER BY `BUSINESS NAME`";
 			$result = $dbh->query($sql);
-			
+
 			foreach ($result as $row) { 
 				unset($address);
 				$address = $row['ADDRESS LINE 1'] . ', ' . $row['CITY, STATE & ZIPCODE'];
@@ -555,10 +555,18 @@
 				$companySize = "Unknown number of";
 				$sic = $row['SIC'];
 				$naics = $row['NAICS'];
-				$facebook = $row['FACEBOOK'];
-				$twitter = $row['TWITTER'];
-				$linkedIn = $row['LINKEDIN'];
-				$instagram = $row['INSTAGRAM'];
+				if (isset($row['FACEBOOK'])) {
+					$facebook = $row['FACEBOOK'];
+				}
+				if (isset($row['TWITTER'])) {
+					$twitter = $row['TWITTER'];
+				}
+				if (isset($row['LINKEDIN'])) {
+					$linkedIn = $row['LINKEDIN'];
+				}
+				if (isset($row['INSTAGRAM'])) {
+					$instagram = $row['INSTAGRAM'];
+				}
 
 				// No. of employees = No. of fulltime + No. of parttime.
 				$nEmployees = intval($row['FULL']) + intval($row['PART']);
@@ -586,10 +594,27 @@
 				companySize = <?php echo '"', $companySize, '"'; ?>;
 				naics = <?php echo '"', $naics, '"'; ?>;
 				sic = <?php echo '"', $sic, '"'; ?>;
-				facebook = <?php echo '"', $facebook, '"'; ?>;
-				twitter = <?php echo '"', $twitter, '"'; ?>;
-				linkedIn = <?php echo '"', $linkedIn, '"'; ?>;
-				instagram = <?php echo '"', $instagram, '"'; ?>;
+				// only set the social media variables if they have values. Else set null
+				facebook = <?php if (isset($facebook)){
+					echo'"', $facebook, '"';
+				} else {
+					echo "null";
+				}?>;
+				twitter = <?php if (isset($twitter)){
+					echo'"', $twitter, '"';
+				} else {
+					echo "null";
+				}?>;
+				linkedIn = <?php if (isset($linkedIn)){
+				 	echo'"', $linkedIn, '"';
+				} else {
+					echo "null";
+				}?>;
+				instagram = <?php if (isset($instagram)){
+					echo'"', $instagram, '"';
+				} else {
+					echo "null";
+				}?>;
 
 				allTitles.push(title);
 
