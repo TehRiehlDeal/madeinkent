@@ -74,7 +74,7 @@
 			<li><a href="about.html" target="_blank">About</a></li>
 			
 			<li id="actBtn" class="navbar-btn">
-				<a href="http://kentwa.gov/content.aspx?id=2102" target="_blank" class="btn btn-default ">Add your business!</a>
+				<a href="http://www.kentwa.gov/home/showdocument?id=4655" target="_blank" class="btn btn-default ">Add your business!</a>
 			</li>
 		  </ul>
 		</div><!--/.nav-collapse -->
@@ -176,6 +176,7 @@
 				// centered on Kent valley 
 				center: new google.maps.LatLng(47.40924755801687, -122.24910480642092),
 				zoom: 14,
+				minZoom: 12,
 				mapTypeId: google.maps.MapTypeId.HYBRID
 			});
 			
@@ -216,6 +217,10 @@
 			var companySize = "Unknown";
 			var sic;
 			var naics;
+			var facebook;
+			var twitter;
+			var linkedIn;
+			var instagram;
 			
 			// for clusterer
 			var markers = [];
@@ -387,7 +392,7 @@
 					companySize = coSize;
 					
 					addClass(document.getElementById('cue'), 'hidden');
-					
+
 					//infoWindow.setContent("<h5>" + marker.getTitle() + "</h5><p>" + address + "</p>");
 					//console.log(placeTitle.toCamel());
 					infoModal.innerHTML =  
@@ -456,6 +461,17 @@
 
 
 				// Highlighting corresponding controls
+
+				// this happens when the mouse moves over the bizlist
+				bizList.addEventListener("mouseenter", function(){
+					$("#cue").fadeOut(200);
+					$("#legend").fadeOut(200);
+				});
+
+				bizList.addEventListener("mouseleave", function(){
+					$("#cue").fadeIn(500);
+					$("#legend").fadeIn(500);
+				});
 					
 				// this happens whenever the mouse moves over a listing entry in the info panel
 				bizDiv.addEventListener('mouseenter', function(){
@@ -529,7 +545,7 @@
 		// takes business address and instantiates marker at the calculated coordinates.
 		<?php 
 			// FOR TESTING: LIMIT here will set the max number of rows to provide 
-			$sql = "SELECT `BUSINESS NAME`, `ADDRESS LINE 1`, `CITY, STATE & ZIPCODE`, `FULL`, `PART`, `SIC`, `NAICS` FROM `kentbiz` WHERE (`NAICS` RLIKE '^3[1-3].*' OR `SIC` RLIKE '^[23].*') ORDER BY `BUSINESS NAME`";
+			$sql = "SELECT `BUSINESS NAME`, `ADDRESS LINE 1`, `CITY, STATE & ZIPCODE`, `FULL`, `PART`, `SIC`, `NAICS`, `FACEBOOK`, `TWITTER`, `LINKEDIN`, `INSTAGRAM` FROM `kentbiz` WHERE (`NAICS` RLIKE '^3[1-3].*' OR `SIC` RLIKE '^[23].*') ORDER BY `BUSINESS NAME`";
 			$result = $dbh->query($sql);
 			
 			foreach ($result as $row) { 
@@ -539,7 +555,11 @@
 				$companySize = "Unknown number of";
 				$sic = $row['SIC'];
 				$naics = $row['NAICS'];
-				
+				$facebook = $row['FACEBOOK'];
+				$twitter = $row['TWITTER'];
+				$linkedIn = $row['LINKEDIN'];
+				$instagram = $row['INSTAGRAM'];
+
 				// No. of employees = No. of fulltime + No. of parttime.
 				$nEmployees = intval($row['FULL']) + intval($row['PART']);
 				
@@ -566,6 +586,10 @@
 				companySize = <?php echo '"', $companySize, '"'; ?>;
 				naics = <?php echo '"', $naics, '"'; ?>;
 				sic = <?php echo '"', $sic, '"'; ?>;
+				facebook = <?php echo '"', $facebook, '"'; ?>;
+				twitter = <?php echo '"', $twitter, '"'; ?>;
+				linkedIn = <?php echo '"', $linkedIn, '"'; ?>;
+				instagram = <?php echo '"', $instagram, '"'; ?>;
 
 				allTitles.push(title);
 

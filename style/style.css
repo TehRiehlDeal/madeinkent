@@ -128,7 +128,7 @@ body:after {
 #infoPanel div{
 	line-height: normal;
 	border-bottom: 1px solid #ccc;
-	padding: 0 10px 10px 10px;
+	padding: 10px 10px 10px 10px;
 }
 
 #bizSearch {
@@ -142,6 +142,10 @@ body:after {
 
 #bizSearch p {
 	margin: 0;
+}
+
+#search {
+	width: 80%;
 }
 
 .ipFocus {
