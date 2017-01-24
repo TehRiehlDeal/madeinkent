@@ -128,7 +128,7 @@ body:after {
 #infoPanel div{
 	line-height: normal;
 	border-bottom: 1px solid #ccc;
-	padding: 10px 10px 10px 10px;
+	padding: 0px 10px 10px 10px;
 }
 
 #bizSearch {
