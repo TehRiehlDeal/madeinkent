@@ -304,7 +304,7 @@
 						"<p><a target=\"_blank\" href=\"" + place.website + "\"><img " + 
 							"alt=\"" + place.name + " - website thumbnail\" " + 
 							"src=\"http://free.pagepeeker.com/v2/thumbs.php?size=l&url=" 
-							+ place.website.replace(/^https?\:\/\//i, "") + "\"></a>" + 
+							+ place.website.replace(/^https?\:\/\//i, "") + "\"></a><i class='fa fa-facebook-official' aria-hidden='true'></i>" + 
 						"</p>" + 
 					"</fieldset>";
 				}
