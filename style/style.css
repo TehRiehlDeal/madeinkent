@@ -128,20 +128,24 @@ body:after {
 #infoPanel div{
 	line-height: normal;
 	border-bottom: 1px solid #ccc;
-	padding: 0 10px 10px 10px;
+	padding: 0px 10px 10px 10px;
 }
 
-#ipHeader {
+#bizSearch {
 	/* line-height: 99%; */
 	border-bottom: 3px solid #aaa !important;
 }
 
-#ipHeader h2 {
+#bizSearch h2 {
 	margin: 5px 0 0 0;
 }
 
-#ipHeader p {
+#bizSearch p {
 	margin: 0;
+}
+
+#search {
+	width: 80%;
 }
 
 .ipFocus {

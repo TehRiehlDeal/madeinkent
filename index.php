@@ -6,7 +6,7 @@
 	try {
 		$dbh = new PDO("mysql:host=$hostname;
 		dbname=logan_madeinkent", $username, $password);
-		//echo "Connected to database.";
+		// echo "Connected to database.";
 	}
 	catch (PDOException $e) {
 		echo $e->getMessage(); 
@@ -36,7 +36,7 @@
 	<!-- font-awesome -->
 	<script src="https://use.fontawesome.com/b74cf08957.js"></script>
 	
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVt8aXjF0XkGVkgeU0cyVAxkJT1EVulKc&libraries=places"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA5OUHz9sl_XvK32-ehqsYbV-dBFNj0OR8&libraries=places"></script>
 	
 	<script src="js/maplabel-compiled.js"></script>
 	
@@ -48,39 +48,9 @@
 </head>
 
 <body>
-    
 
-	<nav class="navbar navbar-default" id="nav_bar" role="navigation">
-	  <div class="container">
-		<div class="navbar-header">
-		  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-			<span class="sr-only">Toggle navigation</span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-		  </button>
-			<a class="navbar-brand" href="#">
-				<img alt="Brand" src="images/kent-wa-logo.png">
-			</a>
-			<div class="navbar-intro">
-				<h3>Welcome to MadeInKent BETA</h3>
-				<p>See the interesting stuff made in the city of Kent, Washington</p>
-			</div>
-		</div>
-		<div id="navbar" class="navbar-collapse collapse ">
-		  <ul class="nav navbar-nav navbar-right navbar-collapse collapse pull-xs-right">
-			<li class="active"><a href="index.php">Home</a></li>
-			
-			<li><a href="about.html" target="_blank">About</a></li>
-			
-			<li id="actBtn" class="navbar-btn">
-				<a href="http://kentwa.gov/content.aspx?id=2102" target="_blank" class="btn btn-default ">Add your business!</a>
-			</li>
-		  </ul>
-		</div><!--/.nav-collapse -->
-	  </div><!-- Container-->
-	</nav>          
-	
+	<?php include_once "includes/navbar.php" ?>
+
 	<div class="content-wrapper">
 		<div class="map-wrapper">
 			<!-- Div to Display the map-->
@@ -88,9 +58,13 @@
 		</div>
 
 		<div id="infoPanel">
-			<div id="ipHeader">
-				<h2>Business Directory</h2>
+			<div id="bizSearch" class="form-group">
+				<form class="form-inline">
+					<label for="search">Search:</label>
+					<input type="text" name="search" id="search" class="form-control">
+				</form>
 			</div>
+
 			<div id="bizList">
 			</div>
 		</div>
@@ -157,13 +131,22 @@
 		}
 		
 		var map;
-		
+
+		// for searching through business names
+		var allTitles = [];
+
+		var bizList = document.getElementById('bizList');
+		var bizDivHeight;
+
+
 		function initMap() {
-			
+
+
 			map = new google.maps.Map(document.getElementById('map'), {
 				// centered on Kent valley 
 				center: new google.maps.LatLng(47.40924755801687, -122.24910480642092),
 				zoom: 14,
+				minZoom: 12,
 				mapTypeId: google.maps.MapTypeId.HYBRID
 			});
 			
@@ -194,7 +177,6 @@
 			});
 			*/
 		
-			var bizList = document.getElementById('bizList');
 			var infoModal = document.getElementsByClassName('modal-body')[0];
 			var placeService = new google.maps.places.PlacesService(map);
 			var geocoder = new google.maps.Geocoder();
@@ -205,6 +187,10 @@
 			var companySize = "Unknown";
 			var sic;
 			var naics;
+			var facebook;
+			var twitter;
+			var linkedIn;
+			var instagram;
 			
 			// for clusterer
 			var markers = [];
@@ -318,7 +304,7 @@
 						"<p><a target=\"_blank\" href=\"" + place.website + "\"><img " + 
 							"alt=\"" + place.name + " - website thumbnail\" " + 
 							"src=\"http://free.pagepeeker.com/v2/thumbs.php?size=l&url=" 
-							+ place.website.replace(/^https?\:\/\//i, "") + "\"></a>" + 
+							+ place.website.replace(/^https?\:\/\//i, "") + "\"></a><i class='fa fa-facebook-official' aria-hidden='true'></i>" + 
 						"</p>" + 
 					"</fieldset>";
 				}
@@ -376,7 +362,7 @@
 					companySize = coSize;
 					
 					addClass(document.getElementById('cue'), 'hidden');
-					
+
 					//infoWindow.setContent("<h5>" + marker.getTitle() + "</h5><p>" + address + "</p>");
 					//console.log(placeTitle.toCamel());
 					infoModal.innerHTML =  
@@ -384,7 +370,7 @@
 						"<p>" + address + 
 						"</p>" + 
 						"<h4>Company size: " + coSize + "</h4>";
-					
+
 					$('#myModal').modal('show'); 
 					
 					//infoWindow.open(map, marker);
@@ -440,10 +426,22 @@
 					"<h4><span class='font-awesome'>" + faSymbol + "</span> " + placeTitle.toCamel() + "</h4>" + 
 					"<p>" + address + "</p>" + 
 					"<p>Company size: " + coSize + "</p>";
-				
 				bizList.appendChild(bizDiv);
-				
+				bizDivHeight = bizDiv.getBoundingClientRect().height + 10;
+
+
 				// Highlighting corresponding controls
+
+				// this happens when the mouse moves over the bizlist
+				bizList.addEventListener("mouseenter", function(){
+					$("#cue").fadeOut(200);
+					$("#legend").fadeOut(200);
+				});
+
+				bizList.addEventListener("mouseleave", function(){
+					$("#cue").fadeIn(500);
+					$("#legend").fadeIn(500);
+				});
 					
 				// this happens whenever the mouse moves over a listing entry in the info panel
 				bizDiv.addEventListener('mouseenter', function(){
@@ -517,9 +515,9 @@
 		// takes business address and instantiates marker at the calculated coordinates.
 		<?php 
 			// FOR TESTING: LIMIT here will set the max number of rows to provide 
-			$sql = "SELECT `BUSINESS NAME`, `ADDRESS LINE 1`, `CITY, STATE & ZIPCODE`, `FULL`, `PART`, `SIC`, `NAICS` FROM `kentbiz` WHERE (`NAICS` RLIKE '^3[1-3].*' OR `SIC` RLIKE '^[23].*') ORDER BY `BUSINESS NAME`";
+			$sql = "SELECT * FROM `kentbiz` WHERE (`NAICS` RLIKE '^3[1-3].*' OR `SIC` RLIKE '^[23].*') ORDER BY `BUSINESS NAME`";
 			$result = $dbh->query($sql);
-			
+
 			foreach ($result as $row) { 
 				unset($address);
 				$address = $row['ADDRESS LINE 1'] . ', ' . $row['CITY, STATE & ZIPCODE'];
@@ -527,7 +525,19 @@
 				$companySize = "Unknown number of";
 				$sic = $row['SIC'];
 				$naics = $row['NAICS'];
-				
+				if (isset($row['FACEBOOK'])) {
+					$facebook = $row['FACEBOOK'];
+				}
+				if (isset($row['TWITTER'])) {
+					$twitter = $row['TWITTER'];
+				}
+				if (isset($row['LINKEDIN'])) {
+					$linkedIn = $row['LINKEDIN'];
+				}
+				if (isset($row['INSTAGRAM'])) {
+					$instagram = $row['INSTAGRAM'];
+				}
+
 				// No. of employees = No. of fulltime + No. of parttime.
 				$nEmployees = intval($row['FULL']) + intval($row['PART']);
 				
@@ -554,7 +564,30 @@
 				companySize = <?php echo '"', $companySize, '"'; ?>;
 				naics = <?php echo '"', $naics, '"'; ?>;
 				sic = <?php echo '"', $sic, '"'; ?>;
-				
+				// only set the social media variables if they have values. Else set null
+				facebook = <?php if (isset($facebook)){
+					echo'"', $facebook, '"';
+				} else {
+					echo "null";
+				}?>;
+				twitter = <?php if (isset($twitter)){
+					echo'"', $twitter, '"';
+				} else {
+					echo "null";
+				}?>;
+				linkedIn = <?php if (isset($linkedIn)){
+				 	echo'"', $linkedIn, '"';
+				} else {
+					echo "null";
+				}?>;
+				instagram = <?php if (isset($instagram)){
+					echo'"', $instagram, '"';
+				} else {
+					echo "null";
+				}?>;
+
+				allTitles.push(title);
+
 				/*
 				console.log("full and part: ");
 				console.log(<?php echo '"', intval($row['FULL']), '"'; ?>);
@@ -619,9 +652,22 @@
 				console.log(count);
 			}
 			*/
+			var searchBar = $("#search");
+			searchBar.on("keyup", function() {
+				var searchResult = new RegExp('^'+searchBar.val()+'.*', 'i');
+				var matches = [];
+				$.each(allTitles, function (title){
+					if (searchResult.test(allTitles[title])) {
+						matches.push(title);
+
+					}
+				});
+				bizList.scrollTop = matches[0] * bizDivHeight;
+				console.log(bizDivHeight);
+			});
         }
 		google.maps.event.addDomListener(window, 'load', initMap);
-    </script>
+	</script>
 	
 	<script src="js/markerclusterer_compiled.js"></script>
 	
