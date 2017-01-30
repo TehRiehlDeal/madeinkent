@@ -652,11 +652,6 @@
 				console.log(count);
 			}
 			*/
-        }
-		google.maps.event.addDomListener(window, 'load', initMap);
-
-		//search script
-		$(document).ready(function(){
 			var searchBar = $("#search");
 			searchBar.on("keyup", function() {
 				var searchResult = new RegExp('^'+searchBar.val()+'.*', 'i');
@@ -664,13 +659,14 @@
 				$.each(allTitles, function (title){
 					if (searchResult.test(allTitles[title])) {
 						matches.push(title);
-						
+
 					}
 				});
 				bizList.scrollTop = matches[0] * bizDivHeight;
 				console.log(bizDivHeight);
 			});
-		});
+        }
+		google.maps.event.addDomListener(window, 'load', initMap);
 	</script>
 	
 	<script src="js/markerclusterer_compiled.js"></script>
