@@ -79,8 +79,8 @@
 	  <!-- <h3>Legend </h3> -->
 	</div>
 	
-	<div id="myModal" class="modal fade" role="dialog">
-		<div class="modal-dialog">
+	<div id="myModal" class="modal fade " role="dialog">
+		<div class="modal-dialog text-center">
 		
 			<!-- Modal content-->
 			<div class="modal-content">
@@ -291,7 +291,11 @@
 					"<h2>" + place.name + "</h2>" + 
 					"<p>" + place.formatted_address + "</p>" + 
 					"<h4>Company size: " + companySize + "</h4>" +
-					"<div class=\"form\">";
+					"<p id='socialMedia'>Social Media: <i class='fa fa-facebook-square' aria-hidden='true'></i>&nbsp;" +
+                    "<i class='fa fa-twitter-square' aria-hidden='true'></i>&nbsp;" +
+                    "<i class='fa fa-linkedin-square' aria-hidden='true'></i>&nbsp;" +
+                    "<i class='fa fa-instagram' aria-hidden='true'></i></p>" +
+                    "<div class=\"form\">";
 				
 				
 				
@@ -304,7 +308,7 @@
 						"<p><a target=\"_blank\" href=\"" + place.website + "\"><img " + 
 							"alt=\"" + place.name + " - website thumbnail\" " + 
 							"src=\"http://free.pagepeeker.com/v2/thumbs.php?size=l&url=" 
-							+ place.website.replace(/^https?\:\/\//i, "") + "\"></a><i class='fa fa-facebook-official' aria-hidden='true'></i>" + 
+							+ place.website.replace(/^https?\:\/\//i, "") + "\"></a>" +
 						"</p>" + 
 					"</fieldset>";
 				}
@@ -312,7 +316,7 @@
 				 
 				
 				/* (images slider) */
-				if (typeof place.photos != 'undefined') {
+				/*if (typeof place.photos != 'undefined') {
 					infoModal.innerHTML += "<div class=\"my-slider form-group\"><ul id=\"slider\"></ul></div>";
 					//var slider = document.getElementById('slider');
 					//let photo;
@@ -321,7 +325,7 @@
 						slider.innerHTML += "<li><img class=\"photo\" src=\"" + place.photos[0].getUrl(photoOpt) + "\"></li>";
 					}
 					$('.my-slider').unslider()
-				}
+				}*/
 				
 				infoModal.innerHTML += "</div>";
 			  }
@@ -588,12 +592,7 @@
 
 				allTitles.push(title);
 
-				/*
-				console.log("full and part: ");
-				console.log(<?php echo '"', intval($row['FULL']), '"'; ?>);
-				console.log(<?php echo '"', intval($row['PART']), '"'; ?>);
-				console.log(<?php echo '"', $nEmployees, '"'; ?>)
-				*/
+				
 				
 				// console.log("sic: " + sic + " naics: " + naics);
 				var bizCode = sic.substring(0,2);
