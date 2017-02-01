@@ -26,9 +26,9 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse ">
             <ul class="nav navbar-nav navbar-right navbar-collapse collapse pull-xs-right">
-                <li class="active"><a href="index.php">Home</a></li>
+                <li id="index"><a href="index.php">Home</a></li>
 
-                <li><a href="about.php" target="_blank">About</a></li>
+                <li id="about"><a href="about.php">About</a></li>
 
                 <li id="actBtn" class="navbar-btn">
                     <a href="http://www.kentwa.gov/home/showdocument?id=4655" target="_blank" class="btn btn-default ">Add your business!</a>
@@ -37,3 +37,28 @@
         </div><!--/.nav-collapse -->
     </div><!-- Container-->
 </nav>
+
+<script>
+    $(document).ready(function()
+    {
+        var pathName = window.location.pathname;
+        //console.log(pathName);
+
+        var res = pathName.split("/");
+
+        var lastPiece = res[res.length - 1];
+
+       // console.log(lastPiece);
+
+        if(lastPiece === "index.php")
+        {
+            $("#index").addClass("active");
+            $("#about").removeClass("active");
+        }
+        else if(lastPiece === "about.php")
+        {
+            $("#about").addClass("active");
+            $("#index").removeClass("active");
+        }
+    });
+</script>

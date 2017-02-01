@@ -291,10 +291,10 @@
 					"<h2>" + place.name + "</h2>" + 
 					"<p>" + place.formatted_address + "</p>" + 
 					"<h4>Company size: " + companySize + "</h4>" +
-					"<p id='socialMedia'>Social Media: <i class='fa fa-facebook-square' aria-hidden='true'></i>&nbsp;" +
-                    "<i class='fa fa-twitter-square' aria-hidden='true'></i>&nbsp;" +
-                    "<i class='fa fa-linkedin-square' aria-hidden='true'></i>&nbsp;" +
-                    "<i class='fa fa-instagram' aria-hidden='true'></i></p>" +
+					"<p id='socialMedia'>Social Media: <a href='https://www.facebook.com' target='_blank'><i class='fa fa-facebook-square' aria-hidden='true'></i></a>&nbsp;" +
+                    "<a href='https://www.twitter.com' target='_blank'><i class='fa fa-twitter-square' aria-hidden='true'></i>&nbsp;" +
+                    "<a href='https://www.linkedin.com' target='_blank'><i class='fa fa-linkedin-square' aria-hidden='true'></i>&nbsp;" +
+                    "<a href='https://www.instagram.com' target='_blank'><i class='fa fa-instagram' aria-hidden='true'></i></p>" +
                     "<div class=\"form\">";
 				
 				
@@ -592,7 +592,7 @@
 
 				allTitles.push(title);
 
-				
+
 				
 				// console.log("sic: " + sic + " naics: " + naics);
 				var bizCode = sic.substring(0,2);
