@@ -84,18 +84,19 @@
 		
 			<!-- Modal content-->
 			<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">×</button>
-				<h4 class="modal-title">Manufacturer Info</h4>
-			</div>
-				<div class="modal-body">
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			</div>
-		</div>	
-	  </div>
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h4 class="modal-title">Manufacturer Info</h4>
+                </div>
+                <div class="modal-body">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+	    </div>
 	</div>
+
 
 <!-- Script to run the map. Markers should be the last thing to load on the page.--> 
 
