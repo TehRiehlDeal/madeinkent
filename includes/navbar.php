@@ -1,9 +1,9 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: Joel
- * Date: 1/25/2017
- * Time: 6:52 PM
+ * User: Kevin Riehl
+ * Date: 2/2/2017
+ * Time: 12:14 AM
  */
 ?>
 
@@ -48,7 +48,7 @@
 
         var lastPiece = res[res.length - 1];
 
-       // console.log(lastPiece);
+        // console.log(lastPiece);
 
         if(lastPiece === "index.php")
         {
