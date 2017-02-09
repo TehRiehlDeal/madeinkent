@@ -88,7 +88,7 @@
                     <button type="button" class="close" data-dismiss="modal">×</button>
                     <h4 class="modal-title">Manufacturer Info</h4>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body myModal-body">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -178,7 +178,7 @@
 			});
 			*/
 		
-			var infoModal = document.getElementsByClassName('modal-body')[0];
+			var infoModal = document.getElementsByClassName('myModal-body')[0];
 			var placeService = new google.maps.places.PlacesService(map);
 			var geocoder = new google.maps.Geocoder();
 			var infoWindow = new google.maps.InfoWindow({content:"Information"});
