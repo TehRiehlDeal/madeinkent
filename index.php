@@ -659,16 +659,25 @@
 				$.each(allTitles, function (title){
 					if (searchResult.test(allTitles[title])) {
 						matches.push(title);
-
 					}
 				});
-				bizList.scrollTop = matches[0] * bizDivHeight;
-				console.log(bizDivHeight);
+				if (matches[0] != null) {
+					searchBar.fadeIn().html('').css("border","0px solid red");
+					bizList.scrollTop = matches[0] * bizDivHeight;
+					//console.log(bizDivHeight);
+				} else if (searchResult == "/^.*/i") {
+					searchBar.fadeIn().html('').css("border","0px solid red");
+					bizList.scrollTop = 0;
+				} else {
+					searchBar.fadeIn().html('').css("border","2px solid red");
+					bizList.scrollTop = 0;
+				}
+
 			});
         }
 		google.maps.event.addDomListener(window, 'load', initMap);
 	</script>
-	
+
 	<script src="js/markerclusterer_compiled.js"></script>
 	
     <!-- for sliding through Place photos-->
