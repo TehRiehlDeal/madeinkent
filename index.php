@@ -34,6 +34,9 @@
         <title>Made in Kent BETA</title>
         <link rel="icon" href="images/title-logo.png" type="image/png">
 
+        <!--Google API Loader-->
+        <script type="text/javascript" src="https://www.google.com/jsapi" async defer></script>
+
         <!-- Bootstrap -->
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 
@@ -105,12 +108,15 @@
         </div>
 
     </body>
-
-    <script src="js/markers.js"></script>
-
-    <script src="js/initializeMap.js"></script>
-
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJVDb9uNj5U8pxTy-fwmFkcJe-JfiJDlU&callback=initMap" async defer></script>
+    <script type="text/javascript" src="js/markerclusterer_compiled.js"></script>
+    <script type="text/javascript" src="js/listLibrary.js"></script>
+    <script type="text/javascript" src="js/mapLibrary.js"></script>
+    <script type="text/javascript" src="js/initMap.js"></script>
+    <script type="text/javascript" src="js/loader.js"></script>
+    <script type="text/javascript" src="js/geocodeFromGoogle.js"></script>
+    <script type="text/javascript" src="js/legend.js"></script>
+    <script type="text/javascript" src="js/markerData.js"></script>
+    <script type="text/javascript" src="js/places.js"></script>
 
 </html>
 
