@@ -6,12 +6,6 @@ $(document).ready(function(){
     setLegend();
 });
 
-String.prototype.toCamel = function(){
-    var re = /(\b[a-z](?!\s))/g;
-    return this.toLowerCase().replace(re, function(x){
-        return x.toUpperCase();
-    });
-};
 
 function getMarkers() {
     $.ajax({
@@ -21,7 +15,8 @@ function getMarkers() {
         dataType: 'json',
         success: function (results) {
             var counter = 0;
-            results.forEach(function(result){
+
+            results.a.forEach(function(result){
                 //set variables to values pulled from database
                 address = result['ADDRESS LINE 1'] + ', ' + result['CITY, STATE & ZIPCODE'];
                 title = result['BUSINESS NAME'];
@@ -31,36 +26,47 @@ function getMarkers() {
                 nEmployees = result['FULL'] + result['PART'];
                 id = counter;
                 counter++;
+                latitude = false;
+                longitude = false;
 
-                //set companySize from total employees (nEmployees)
-                if (nEmployees < 50){
-                    companySize = "0 - 49";
-                }
-                else if (nEmployees < 100){
-                    companySize = "50 - 99";
-                }
-                else if (nEmployees < 150){
-                    companySize = "100 - 149";
-                }
-                else if (nEmployees < 200){
-                    companySize = "150 - 199";
-                }
-                else if (nEmployees >= 200){
-                    companySize = "200+";
-                }
+                results.b.forEach(function(result) {
+                    if (address == result['postcode']) {
+                        latitude = result['latitude'];
+                        longitude = result['longitude'];
+                    }
 
-                companySize = companySize + " employees.";
+                });
 
-                //set bizCode from SIC or NAICS code
-                bizCode = sic.substring(0,2);
-                naicsPrefix = naics.substring(0,2);
-                if (naics != '' && (naicsPrefix == '31' || naicsPrefix == '32' || naicsPrefix == '33')){
-                    bizCode = naics.substring(0,3);
 
-                    // special cases
-                    if (naics.substring(0,4) == '3391' || naics.substring(0,4) == '3399')
-                        bizCode = naics.substring(0,4);
-                }
+                // //set companySize from total employees (nEmployees)
+                // if (nEmployees < 50){
+                //     companySize = "0 - 49";
+                // }
+                // else if (nEmployees < 100){
+                //     companySize = "50 - 99";
+                // }
+                // else if (nEmployees < 150){
+                //     companySize = "100 - 149";
+                // }
+                // else if (nEmployees < 200){
+                //     companySize = "150 - 199";
+                // }
+                // else if (nEmployees >= 200){
+                //     companySize = "200+";
+                // }
+                //
+                // companySize = companySize + " employees.";
+                //
+                // //set bizCode from SIC or NAICS code
+                // bizCode = sic.substring(0,2);
+                // naicsPrefix = naics.substring(0,2);
+                // if (naics != '' && (naicsPrefix == '31' || naicsPrefix == '32' || naicsPrefix == '33')){
+                //     bizCode = naics.substring(0,3);
+                //
+                //     // special cases
+                //     if (naics.substring(0,4) == '3391' || naics.substring(0,4) == '3399')
+                //         bizCode = naics.substring(0,4);
+                // }
 
                 // if (typeof codeCats[bizCode] != 'undefined'){
                 //     marker.setLabel({
@@ -101,30 +107,23 @@ function getMarkers() {
                 // bizList.appendChild(bizDiv);
                 // bizDivHeight = bizDiv.getBoundingClientRect().height + 10;
 
-                console.log(address +" || "+ title +" || "+ companySize +" || "+ sic +" || "+ naics +" || "+ companySize +" || "+ bizCode +" || "+ id);
+
+                //set options
+                options = {
+                    address: address,
+                    //bizCode: bizCode,
+                    id: id
+                };
+
+                //if position is cached pull from cache otherwise dont set position and geocode
+                if (latitude && longitude) {
+                    options.lat = latitude;
+                    options.lng = longitude;
+                }
+                //must use the cache since max requests per second is 50 and we have 119
+                map.addMarker(options);
             });
 
-
-            // map.addMarker({
-            //     lat: 47.40924755801687,
-            //     lng: -122.24910480642092,
-            //     draggable: true,
-            //     visible: true,
-            //     id: 1,
-            //     events: [{
-            //         name: 'click',
-            //         callback: function (e, marker) {
-            //             alert("Marker Has Been Clicked");
-            //             console.log(e, marker);
-            //         }
-            //     }, {
-            //         name: 'dragend',
-            //         callback: function (e) {
-            //             alert("Marker Has Been Dragged");
-            //         }
-            //     }],
-            //     icon: "http://maps.google.com/mapfiles/ms/icons/blue-pushpin.png"
-            // });
         }
     });
 }

@@ -85,6 +85,8 @@ var infoModal = document.getElementsByClassName('modal-body')[0];
 //initiate variable for google's placesService
 var placeService;
 
+var map;
+
 function initMap(window, google, MapLibrary) {
     var options = {
         center: new google.maps.LatLng(47.40924755801687, -122.24910480642092),
@@ -95,11 +97,12 @@ function initMap(window, google, MapLibrary) {
             options: {
                 minimumClusterSize: 4
             }
-        }
+        },
+        geocoder: true
     };
     var element = document.getElementById('map');
 
-    var map = MapLibrary.create(element, options);
+    map = MapLibrary.create(element, options);
 
     //getting an instance of the map to set mapInstance.controls
     var mapInstance = map.getMap();

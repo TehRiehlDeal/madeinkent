@@ -9,13 +9,13 @@ session_start();
     if(isset($_GET['token']) && isset($_SESSION[$_GET['token']])) {
     	unset($_SESSION[$_GET['token']]);
     	error_log("Token Verified:". $_GET['token'] . "\n" , 3, "my-errors.log");
-	require '/home/logan/creds/dblogin.php';
+	require '/home/madeinkent/creds/dblogin.php';
 	$postcode = $_GET['postcode'];
 	$lat = $_GET['latitude'];
 	$lon = $_GET['longitude'];
 	
 	try {
-		$dbh = new PDO("mysql:host=$hostname; dbname=logan_madeinkent", $username, $password);
+		$dbh = new PDO("mysql:host=$hostname; dbname=madeinke_madeinkent", $username, $password);
 		echo "Connected to database.";
 		error_log("Connected to Database!\n", 3, "my-errors.log");
 	}

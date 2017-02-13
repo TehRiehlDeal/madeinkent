@@ -6,16 +6,17 @@
  * Time: 8:22 AM
  */
 session_start();
-require '/home/logan/creds/dblogin.php';
+require '/home/madeinkent/creds/dblogin.php';
 
 try {
     $dbh = new PDO("mysql:host=$hostname;
-            dbname=logan_madeinkent", $username, $password);
+            dbname=madeinke_madeinkent", $username, $password);
     // echo "Connected to database.";
 }
 catch (PDOException $e) {
     echo $e->getMessage();
 }
+
 
 //error reporting
 ini_set('display_errors', 1);
@@ -31,4 +32,16 @@ $statement = $dbh->prepare($query);
 //execute
 $statement->execute();
 $rows = $statement->fetchAll();
-echo json_encode($rows);
+
+// FOR TESTING: LIMIT here will set the max number of rows to provide
+// Define the query
+$query2 = "SELECT * FROM `postcodes` ORDER BY `postcode`";
+
+//prepare the statement
+$statement2 = $dbh->prepare($query2);
+
+//execute
+$statement2->execute();
+$rows2 = $statement2->fetchAll();
+
+echo json_encode(array("a" => $rows, "b" => $rows2));

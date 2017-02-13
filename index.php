@@ -8,11 +8,11 @@
 
     // php header
     session_start();
-    require '/home/logan/creds/dblogin.php';
+    require '/home/madeinkent/creds/dblogin.php';
 
     try {
         $dbh = new PDO("mysql:host=$hostname;
-            dbname=logan_madeinkent", $username, $password);
+            dbname=madeinke_madeinkent", $username, $password);
         // echo "Connected to database.";
     }
     catch (PDOException $e) {
@@ -108,6 +108,7 @@
         </div>
 
     </body>
+    <script type="text/javascript" src="js/functions.js"></script>
     <script type="text/javascript" src="js/markerclusterer_compiled.js"></script>
     <script type="text/javascript" src="js/listLibrary.js"></script>
     <script type="text/javascript" src="js/mapLibrary.js"></script>
