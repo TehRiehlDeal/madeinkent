@@ -1,8 +1,21 @@
 /**
  * Created by Joel on 2/6/2017.
  */
+
+/*
+ * This file is in charge of creating and maintaining the map. It also
+ * has access to the listLibrary to create and maintain the list of Markers.
+ */
+
+/*
+ * This is a self invoking function that creates and returns a MapLibrary
+ * object to manipulate the map with.
+ */
 function library(window, google, List) {
     var MapLibrary = (function() {
+        /*
+         * This method is a constructor for the MapLibrary object
+         */
         function MapLibrary(element, options) {
             this.map = new google.maps.Map(element, options);
             this.markers = List.create();
@@ -14,12 +27,19 @@ function library(window, google, List) {
             }
         }
         MapLibrary.prototype = {
+            /*
+             * This is a private method used to add an event to an object.
+             */
             _on: function(options) {
                 var self = this;
                 google.maps.event.addListener(options.obj, options.event, function(e) {
                     options.callback.call(self, e, options.obj);
                 });
             },
+            /*
+             * This is a private method that takes an object and a list of events
+             * and attaches each event using the _on method.
+             */
             _attachEvents: function(obj, events) {
                 var self = this;
                 events.forEach(function(event) {
@@ -30,10 +50,17 @@ function library(window, google, List) {
                     });
                 });
             },
+            /*
+             * This is a private method used to create a marker object
+             */
             _createMarker: function(options) {
                 options.map = this.map;
                 return new google.maps.Marker(options);
             },
+            /*
+             * This is a private method that takes an address and returns
+             * the lat/lng location
+             */
             _geocode: function(options) {
                 this.geocoder.geocode({
                     address: options.address
@@ -48,6 +75,10 @@ function library(window, google, List) {
                     }
                 });
             },
+            /*
+             * This is a public metho that checks if there is a lat/lng position given. If not
+             * it uses _geocode to get a lat/lng and then _createMarker to create the marker
+             */
             addMarker: function(options) {
                 var marker;
                 var self = this;
@@ -64,7 +95,6 @@ function library(window, google, List) {
                             if (this.markerClusterer) {
                                 this.markerClusterer.addMarker(marker);
                             }
-
                             self.markers.add(marker);
                             if (options.events) {
                                 self._attachEvents(marker, options.events);
@@ -86,11 +116,19 @@ function library(window, google, List) {
                     return marker;
                 }
             },
-            //function to edit for search
+            /*
+             * This method takes a callback which can be written to check any of
+             * the marker attributes.
+             * NOTE: PROBABLY NEEDS EDIT FOR FULL SEARCH FUNCTIONALITY
+             */
             findBy: function(callback) {
                 return this.markers.find(callback);
             },
-            //function to edit for search
+            /*
+             * This method takes a callback which can be written to check any of
+             * the marker attributes, and then removes them from the map.
+             * NOTE: DOES NOT REMOVE THEM FROM THE LIST. NEEDS EDIT FOR FULL SEARCH FUNCTIONALITY
+             */
             removeBy: function(callback) {
                 var self = this;
                 self.markers.find(callback, function(markers) {
@@ -103,7 +141,9 @@ function library(window, google, List) {
                     });
                 });
             },
-            //gets an instance of the map
+            /*
+             * This method retrieves a instance of the map itself.
+             */
             getMap: function() {
                 return this.map;
             }
