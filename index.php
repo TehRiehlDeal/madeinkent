@@ -107,19 +107,21 @@
             </div>
         </div>
 
+        <script type="text/javascript" src="js/functions.js"></script>
+        <script type="text/javascript" src="js/markerclusterer_compiled.js"></script>
+        <script type="text/javascript" src="js/listLibrary.js"></script>
+        <script type="text/javascript" src="js/mapLibrary.js"></script>
+        <script type="text/javascript" src="variables/markerVariables.js"></script>
+        <script type="text/javascript" src="variables/mapVariables.js"></script>
+        <script type="text/javascript" src="js/initMap.js"></script>
+        <script type="text/javascript" src="js/loader.js"></script>
+        <script type="text/javascript" src="js/geocodeFromGoogle.js"></script>
+        <script type="text/javascript" src="js/legend.js"></script>
+        <script type="text/javascript" src="js/markerData.js"></script>
+        <script type="text/javascript" src="js/places.js"></script>
+        <script type="text/javascript" src="js/mapSearch.js"></script>
+
     </body>
-    <script type="text/javascript" src="js/functions.js"></script>
-    <script type="text/javascript" src="js/markerclusterer_compiled.js"></script>
-    <script type="text/javascript" src="js/listLibrary.js"></script>
-    <script type="text/javascript" src="js/mapLibrary.js"></script>
-    <script type="text/javascript" src="variables/markerVariables.js"></script>
-    <script type="text/javascript" src="variables/mapVariables.js"></script>
-    <script type="text/javascript" src="js/initMap.js"></script>
-    <script type="text/javascript" src="js/loader.js"></script>
-    <script type="text/javascript" src="js/geocodeFromGoogle.js"></script>
-    <script type="text/javascript" src="js/legend.js"></script>
-    <script type="text/javascript" src="js/markerData.js"></script>
-    <script type="text/javascript" src="js/places.js"></script>
 
 </html>
 

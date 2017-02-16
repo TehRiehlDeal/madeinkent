@@ -16,6 +16,7 @@ var facebook;
 var twitter;
 var linkedIn;
 var instagram;
+var bizCode;
 
 var markers = [];
 
@@ -105,14 +106,3 @@ for (var category in categories) {
 var legend = document.getElementById('legend');
 
 var legendIconColor = mapCategoryColor['Other'];
-
-if (typeof categoryCodes[bizCode] != 'undefined')
-    legendIconColor = mapCategoryColor[categoryCodes[bizCode]];
-
-for (var label in markerLabels) {
-    var name = categories[label];
-    var icon = markerLabels[label];
-    var div = document.createElement('div');
-    div.innerHTML = '<p><span style="color:' + catColors[label] + '">' + icon + '</span> ' + name + '</p>';
-    legend.appendChild(div);
-}

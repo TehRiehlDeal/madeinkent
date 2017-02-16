@@ -21,7 +21,7 @@ function getMarkers(callback) {
         success: function (results) {
             //set postcodes to array of postcodes
 
-            var counter = 1;
+            var counter = 0;
 
             results.a.forEach(function(result){
                 //set variables to values pulled from database
@@ -36,7 +36,7 @@ function getMarkers(callback) {
                 latitude = false;
                 longitude = false;
 
-                bizDiv = document.createElement("div");
+                var bizDiv = document.createElement("div");
 
                 results.b.forEach(function(result) {
                     if (address == result['postcode']) {
@@ -133,7 +133,7 @@ function getMarkers(callback) {
                     "<p>Company size: " + companySize + "</p>";
                 bizList.appendChild(bizDiv);
                 bizDivHeight = bizDiv.getBoundingClientRect().height + 10;
-
+                allTitles.push(title);
 
             });
             //save results.b to global variable

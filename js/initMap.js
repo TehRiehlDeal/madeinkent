@@ -16,7 +16,7 @@ function initMap(window, google, MapLibrary) {
     map = MapLibrary.create(element, options);
 
     //getting an instance of the map to set mapInstance.controls
-    var mapInstance = map.getMap();
+    mapInstance = map.getMap();
 
     var legend = document.getElementById("legend");
     mapInstance.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(legend);

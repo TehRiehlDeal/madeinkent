@@ -6,3 +6,4 @@ var mapLabel;
 var allTitles = [];
 var bizList = document.getElementById('bizList');
 var bizDivHeight;
+var mapInstance;
