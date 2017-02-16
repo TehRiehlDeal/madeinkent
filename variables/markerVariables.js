@@ -3,9 +3,9 @@
  */
 
 var infoModal = document.getElementsByClassName('modal-body')[0];
-var placeService = new google.maps.places.PlacesService(map);
-var geocoder = new google.maps.Geocoder();
-var infoWindow = new google.maps.InfoWindow({content:"Information"});
+var placeService;
+var geocoder;
+var infoWindow;
 var address = "";
 var title = "";
 //var nEmployees = 0;
@@ -19,7 +19,8 @@ var instagram;
 
 var markers = [];
 
-var categories = ['Food and Beverage',
+var categories = ['Aerospace',
+                'Food and Beverage',
                 'Paper and Wood',
                 'Chemical and Plastics',
                 'Construction and Metal Materials',
@@ -28,7 +29,9 @@ var categories = ['Food and Beverage',
                 'Other Products',
                 'Other'];
 
-var categoryColors = ['#0054A6',
+var categoryColors = [
+                    '#42B4E6',
+                    '#0054A6',
                     '#FFF568',
                     '#FBAF5D',
                     '#545454',
@@ -38,25 +41,28 @@ var categoryColors = ['#0054A6',
                     '#9E0B0F'];
 
 var categoryCodes = {
-        '311': categories[0],
-        '312': categories[0],
-        '322': categories[1],
-        '325': categories[2],
-        '326': categories[2],
-        '327': categories[3],
-        '331': categories[3],
-        '333': categories[4],
-        '335': categories[4],
-        '336': categories[4],
+        '311': categories[1],
+        '312': categories[1],
+        '322': categories[2],
+        '325': categories[3],
+        '326': categories[3],
+        '327': categories[4],
+        '331': categories[4],
+        '333': categories[5],
+        '335': categories[5],
+        '336': categories[5],
         // special case
-        '3391': categories[5],
-        '315': categories[6],
-        '337': categories[6],
+        '3391': categories[6],
+        '315': categories[7],
+        '337': categories[7],
         // special case
-        '3399': categories[6]
+        '3399': categories[7],
+        '336414': categories[0],
+        '336413': categories[0]
     };
 
-var markerLabels = ["\uf0f5",
+var markerLabels = ["\uf197",
+            "\uf0f5",
             "\uf1bb",
             "\uf0c3",
             "\uf076",
@@ -65,9 +71,10 @@ var markerLabels = ["\uf0f5",
             "\uf06b",
             "\uf275"];
 
-var iconBase = 'images/icons/';
+var iconImageBase = 'images/icons/';
 
 var iconImages = [
+    iconImageBase + 'icon-1.png',
     iconImageBase + 'icon-2.png',
     iconImageBase + 'icon-3.png',
     iconImageBase + 'icon-4.png',
@@ -79,20 +86,20 @@ var iconImages = [
 
 var icons = [];
 
-for (var cat in categories) {
-    icons[categories[cat]] = iconImages[cat];
+for (var category in categories) {
+    icons[categories[category]] = iconImages[category];
 }
 
 var icons2 =[];
 
-for (var cat in categories) {
-    icons2[categories[cat]] = markerLabels[cat];
+for (var category in categories) {
+    icons2[categories[category]] = markerLabels[category];
 }
 
 var mapCategoryColor = [];
 
-for (var cat in categories) {
-    mapCategoryColor[categories[cat]] = categoryColors[cat];
+for (var category in categories) {
+    mapCategoryColor[categories[category]] = categoryColors[category];
 }
 
 var legend = document.getElementById('legend');

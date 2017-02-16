@@ -112,6 +112,8 @@
     <script type="text/javascript" src="js/markerclusterer_compiled.js"></script>
     <script type="text/javascript" src="js/listLibrary.js"></script>
     <script type="text/javascript" src="js/mapLibrary.js"></script>
+    <script type="text/javascript" src="variables/markerVariables.js"></script>
+    <script type="text/javascript" src="variables/mapVariables.js"></script>
     <script type="text/javascript" src="js/initMap.js"></script>
     <script type="text/javascript" src="js/loader.js"></script>
     <script type="text/javascript" src="js/geocodeFromGoogle.js"></script>

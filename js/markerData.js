@@ -88,18 +88,21 @@ function getMarkers(callback) {
                     bizCode = naics.substring(0,3);
 
                     // special cases
-                    if (naics.substring(0,4) == '3391' || naics.substring(0,4) == '3399')
+                    if (naics.substring(0,4) == '3391' || naics.substring(0,4) == '3399' )
                         bizCode = naics.substring(0,4);
+
+                    if(naics.substring(0,6) == '336414' || naics.substring(0,6) == '336413')
+                        bizCode = naics.substring(0,6);
                 }
 
-                if (typeof codeCats[bizCode] != 'undefined'){
+                if (typeof categoryCodes[bizCode] != 'undefined'){
                     thisMarker.setLabel({
-                        text: icons2[codeCats[bizCode]],
+                        text: icons2[categoryCodes[bizCode]],
                         fontFamily: 'FontAwesome',
                         fontSize: '20px'
                     });
                     thisMarker.setIcon({labelOrigin: new google.maps.Point(23,17),
-                        url: icons[codeCats[bizCode]]});
+                        url: icons[categoryCodes[bizCode]]});
                     //console.log("thisMarker.getLabel()" + thisMarker.getLabel());
                 }
                 else {
@@ -117,13 +120,13 @@ function getMarkers(callback) {
                 bizDiv.id = id;
 
                 var faSymbol = icons2['Other'];
-                if (typeof codeCats[bizCode] != 'undefined')
-                    faSymbol = icons2[codeCats[bizCode]];
+                if (typeof categoryCodes[bizCode] != 'undefined')
+                    faSymbol = icons2[categoryCodes[bizCode]];
                 //console.log("infopanel icon should be defined");
 
                 //console.log(faSymbol);
                 //console.log(bizCode);
-                //console.log(typeof codeCats[bizCode]);
+                //console.log(typeof categoryCodes[bizCode]);
                 bizDiv.innerHTML =
                     "<h4><span class='font-awesome'>" + faSymbol + "</span> " + title.toCamel() + "</h4>" +
                     "<p>" + address + "</p>" +

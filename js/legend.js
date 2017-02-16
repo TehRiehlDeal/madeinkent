@@ -7,7 +7,7 @@ function setLegend() {
         var name = categories[label];
         var icon = markerLabels[label];
         var div = document.createElement('div');
-        div.innerHTML = '<p><span style="color:' + catColors[label] + '">' + icon + '</span> ' + name + '</p>';
+        div.innerHTML = '<p><span style="color:' + categoryColors[label] + '">' + icon + '</span> ' + name + '</p>';
         legend.appendChild(div);
     }
 }
