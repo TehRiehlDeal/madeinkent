@@ -49,6 +49,5 @@ $(document).ready(function (){
             searchBar.fadeIn().html('').css("border", "0px solid red");
         }
 
-        bizList.scrollTop = matches[0] * bizDivHeight;
     });
 });
