@@ -32,8 +32,6 @@ $(document).ready(function (){
                 //sets postcodes to the array of addresses and their lat/lng locations
                 postcodes = value;     
             });
-
-            bizList.scrollTop = 0;
         }
         else {
             $.each(allTitles, function(title ){
