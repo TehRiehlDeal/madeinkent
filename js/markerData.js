@@ -132,7 +132,7 @@ function getMarkers(callback) {
                 bizDiv.innerHTML =
                     "<h4><span class='font-awesome'>" + faSymbol + "</span> " + title.toCamel() + "</h4>" +
                     "<p>" + address + "</p>" +
-                    "<p>Company size: " + companySize + "</p>";
+                    "<p>Company size: " + options.coSize + "</p>";
                 bizList.appendChild(bizDiv);
                 bizDivHeight = bizDiv.getBoundingClientRect().height + 10;
                 allTitles.push(title);
