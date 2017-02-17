@@ -3,7 +3,6 @@
  */
 
 var infoModal = document.getElementsByClassName('modal-body')[0];
-var placeService;
 var geocoder;
 var infoWindow;
 var address = "";

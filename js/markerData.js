@@ -2,6 +2,7 @@
  * Created by Joel on 2/8/2017.
  */
 var postcodes;
+var thisMarker;
 
 $(document).ready(function(){
     //sets markers. Postcodes for geocoding can be accessed in postcodes markers array is in map.markers
@@ -27,7 +28,6 @@ function getMarkers(callback) {
                 //set variables to values pulled from database
                 address = result['ADDRESS LINE 1'] + ', ' + result['CITY, STATE & ZIPCODE'];
                 title = result['BUSINESS NAME'];
-                companySize = "Unknown Number of";
                 sic = result['SIC'];
                 naics = result['NAICS'];
                 nEmployees = result['FULL'] + result['PART'];
@@ -49,8 +49,11 @@ function getMarkers(callback) {
                 //set options
                 options = {
                     address: address,
-                    id: id
+                    id: id,
+                    title: title
                 };
+
+
 
                 //if position is cached pull from cache otherwise dont set position and geocode
                 if (latitude && longitude) {
@@ -58,29 +61,28 @@ function getMarkers(callback) {
                     options.lng = longitude;
                 }
 
+                //set companySize from total employees (nEmployees)
+                if (nEmployees < 50){
+                    options.coSize = "0 - 49";
+                }
+                else if (nEmployees < 100){
+                    options.coSize = "50 - 99";
+                }
+                else if (nEmployees < 150){
+                    options.coSize = "100 - 149";
+                }
+                else if (nEmployees < 200){
+                    options.coSize = "150 - 199";
+                }
+                else if (nEmployees >= 200){
+                    options.coSize = "200+";
+                }
+
+                options.coSize = options.coSize + " employees.";
+
                 //must use the cache since max requests per second is 50 and we have 119
                 //create marker here
                 thisMarker = map.addMarker(options);
-
-                //set companySize from total employees (nEmployees)
-                if (nEmployees < 50){
-                    companySize = "0 - 49";
-                }
-                else if (nEmployees < 100){
-                    companySize = "50 - 99";
-                }
-                else if (nEmployees < 150){
-                    companySize = "100 - 149";
-                }
-                else if (nEmployees < 200){
-                    companySize = "150 - 199";
-                }
-                else if (nEmployees >= 200){
-                    companySize = "200+";
-                }
-
-                companySize = companySize + " employees.";
-
                 //set bizCode from SIC or NAICS code
                 bizCode = sic.substring(0,2);
                 naicsPrefix = naics.substring(0,2);
@@ -136,36 +138,48 @@ function getMarkers(callback) {
                 allTitles.push(title);
 
             });
+
+            $.each(map.markers.items, function (marker) {
+
+               events = [{
+                   name: 'click',
+                   callback: function (e) {
+                       openModal(marker)
+                   }
+               }];
+               map._attachEvents(map.markers.items[marker], events);
+               $('#' + marker).mouseup(function(){
+                   openModal(marker)
+               });
+               $('#' + marker).mouseover(function(){
+                   $('#' + marker).css('cursor', 'pointer');
+               });
+
+            });
             //save results.b to global variable
             callback(results.b);
 
         }
     });
 }
-
-function openModal(){
-    // WHAT DOES THIS LINE ACCOMPLISH?!?!?!?! (don't delete it)
-    companySize = coSize;
-
+function openModal(marker) {
     addClass(document.getElementById('cue'), 'hidden');
 
     //infoWindow.setContent("<h5>" + marker.getTitle() + "</h5><p>" + address + "</p>");
     //console.log(placeTitle.toCamel());
     infoModal.innerHTML =
-        "<h2>" + placeTitle.toCamel() + "</h2>" +
-        "<p>" + address +
+        "<h2>" + map.markers.items[marker].title.toCamel() + "</h2>" +
+        "<p>" + map.markers.items[marker].address +
         "</p>" +
-        "<h4>Company size: " + coSize + "</h4>";
+        "<h4>Company size: " + map.markers.items[marker].coSize + "</h4>";
 
     $('#myModal').modal('show');
 
-    //infoWindow.open(map, marker);
-
     // request place info
     var request = {
-        location: point,
+        location: {lat: parseFloat(map.markers.items[marker].lat), lng: parseFloat(map.markers.items[marker].lng)},
         radius: '1000',
-        name: placeTitle
+        name: map.markers.items[marker].title
     };
 
     // placeInfo() handles response, callback to placeID() function

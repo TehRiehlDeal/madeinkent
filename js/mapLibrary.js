@@ -96,9 +96,7 @@ function library(window, google, List) {
                                 this.markerClusterer.addMarker(marker);
                             }
                             self.markers.add(marker);
-                            if (options.events) {
-                                self._attachEvents(marker, options.events);
-                            }
+
                             return marker;
                         }
                     })
@@ -136,7 +134,7 @@ function library(window, google, List) {
                         if (self.markerClusterer) {
                             self.markerClusterer.removeMarker(marker);
                         } else {
-                            marker.setMap(null);
+                            marker.remove();
                         }
                     });
                 });
