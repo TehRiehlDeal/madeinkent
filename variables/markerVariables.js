@@ -2,7 +2,7 @@
  * Created by Kevin Riehl on 2/2/2017.
  */
 
-var infoModal = document.getElementsByClassName('modal-body')[0];
+var infoModal = document.getElementsByClassName('mymodal-body')[0];
 var geocoder;
 var infoWindow;
 var address = "";
