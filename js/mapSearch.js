@@ -30,7 +30,7 @@ $(document).ready(function (){
 
             getMarkers(function(value){
                 //sets postcodes to the array of addresses and their lat/lng locations
-                postcodes = value;     
+                postcodes = value;
             });
         }
         else {
