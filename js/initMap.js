@@ -3,7 +3,7 @@ function initMap(window, google, MapLibrary) {
         center: new google.maps.LatLng(47.40924755801687, -122.24910480642092),
         zoom: 14,
         minZoom: 12,
-        mapTypeID: google.maps.MapTypeId.HYBRID,
+        mapTypeId: 'hybrid',
         cluster: {
             options: {
                 minimumClusterSize: 4
