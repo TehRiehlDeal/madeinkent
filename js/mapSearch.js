@@ -30,7 +30,7 @@ $(document).ready(function (){
 
             getMarkers(function(value){
                 //sets postcodes to the array of addresses and their lat/lng locations
-                postcodes = value;
+                postcodes = value;     
             });
         }
         else {
@@ -49,5 +49,6 @@ $(document).ready(function (){
             searchBar.fadeIn().html('').css("border", "0px solid red");
         }
 
+        bizList.scrollTop = 0;
     });
 });
