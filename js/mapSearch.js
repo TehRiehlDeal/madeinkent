@@ -20,18 +20,12 @@ $(document).ready(function (){
         }
         else if (searchResult == "/^.*/i"){
             searchBar.fadeIn().html('').css("border","0px solid red");
-            map.removeBy(function (marker){
-                return marker;
+            map.markers.items.forEach(function(marker){
+                $("#"+marker.id).show();
             });
-            $.each(matches, function(divToRemove){
-               $("#" + divToRemove).remove();
-            });
-
-
-            getMarkers(function(value){
-                //sets postcodes to the array of addresses and their lat/lng locations
-                postcodes = value;     
-            });
+            map.replaceBy(function(marker){
+                return marker.map == null
+            })
         }
         else {
             $.each(allTitles, function(title ){
@@ -42,7 +36,7 @@ $(document).ready(function (){
                     map.removeBy(function (marker){
                         return marker.id == title;
                     });
-                    $("#" + title).remove();
+                    $("#" + title).hide();
                 }
             });
 

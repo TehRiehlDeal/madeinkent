@@ -134,10 +134,26 @@ function library(window, google, List) {
                         if (self.markerClusterer) {
                             self.markerClusterer.removeMarker(marker);
                         } else {
-                            marker.remove();
+                            marker.setMap(null);
                         }
                     });
                 });
+            },
+            /*
+             * This method is used to place markers back onto the map after they
+             * have been removed.
+             */
+            replaceBy: function(callback) {
+                var self = this;
+                self.markers.find(callback, function(markers) {
+                    markers.forEach(function(marker) {
+                        if (self.markerClusterer) {
+                            self.markerClusterer.addMarker(marker);
+                        } else {
+                            marker.setMap(this.map);
+                        }
+                    });
+                })
             },
             /*
              * This method retrieves a instance of the map itself.
