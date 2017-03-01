@@ -19,56 +19,48 @@ var bizCode;
 
 var markers = [];
 
-var categories = ['Aerospace',
+var categories = ['Aerospace/Outerspace',
                 'Food and Beverage',
-                'Paper and Wood',
                 'Chemical and Plastics',
                 'Construction and Metal Materials',
                 'Machinery',
                 'Medical',
-                'Other Products',
                 'Other'];
 
 var categoryColors = [
                     '#42B4E6',
                     '#0054A6',
-                    '#FFF568',
                     '#FBAF5D',
                     '#545454',
                     '#F49AC2',
                     '#8C6239',
-                    '#3CB878',
                     '#9E0B0F'];
 
 var categoryCodes = {
         '311': categories[1],
         '312': categories[1],
-        '322': categories[2],
-        '325': categories[3],
-        '326': categories[3],
-        '327': categories[4],
-        '331': categories[4],
-        '333': categories[5],
-        '335': categories[5],
-        '336': categories[5],
+        '325': categories[2],
+        '326': categories[2],
+        '327': categories[3],
+        '331': categories[3],
+        '333': categories[4],
+        '335': categories[4],
+        '336': categories[4],
         // special case
-        '3391': categories[6],
-        '315': categories[7],
-        '337': categories[7],
+        '315': categories[5],
+        '337': categories[5],
         // special case
-        '3399': categories[7],
+        '3399': categories[5],
         '336414': categories[0],
         '336413': categories[0]
     };
 
 var markerLabels = ["\uf197",
             "\uf0f5",
-            "\uf1bb",
             "\uf0c3",
             "\uf076",
             "\uf085",
             "\uf0fa",
-            "\uf06b",
             "\uf275"];
 
 var iconImageBase = 'images/icons/';
@@ -76,12 +68,10 @@ var iconImageBase = 'images/icons/';
 var iconImages = [
     iconImageBase + 'icon-1.png',
     iconImageBase + 'icon-2.png',
-    iconImageBase + 'icon-3.png',
     iconImageBase + 'icon-4.png',
     iconImageBase + 'icon-5.png',
     iconImageBase + 'icon-6.png',
     iconImageBase + 'icon-7.png',
-    iconImageBase + 'icon-8.png',
     iconImageBase + 'icon-9.png'];
 
 var icons = [];

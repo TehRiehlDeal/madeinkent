@@ -9,6 +9,7 @@ var matches = [];
 $(document).ready(function (){
     searchBar.on("keyup", function(e){
         var searchResult = new RegExp('^' + searchBar.val() + '.*', 'i');
+        console.log(searchResult);
         if (searchResult == "/^.*/i" && mementoStack[0] == null ) {
             //do nothing
             //this keeps it from refreshing when backspace is hit before typing.
