@@ -20,7 +20,7 @@ $(document).ready(function (){
                 var previousState = mementoStack.pop()
                 for (var i = 0; i < previousState.length; i++) {
                     map.replaceBy(function (marker) {
-                        return marker.id == previousState[i] && marker.map == null;
+                        return marker.id == previousState[i] && marker.inCluster == false && marker.allowCategory == true;
                     });
                     $("#" + previousState[i]).show();
                 }
@@ -46,7 +46,7 @@ $(document).ready(function (){
                     $("#" + marker.id).show();
                 });
                 map.replaceBy(function (marker) {
-                    return marker.map == null
+                    return marker.inCluster == false && marker.allowCategory == true;
                 })
             }
             else {

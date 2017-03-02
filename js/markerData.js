@@ -50,7 +50,9 @@ function getMarkers(callback) {
                 options = {
                     address: address,
                     id: id,
-                    title: title
+                    title: title,
+                    inCluster: true,
+                    allowCategory: true
                 };
 
 

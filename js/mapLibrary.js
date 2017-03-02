@@ -133,6 +133,7 @@ function library(window, google, List) {
                     markers.forEach(function(marker) {
                         if (self.markerClusterer) {
                             self.markerClusterer.removeMarker(marker);
+                            marker.inCluster = false;
                         } else {
                             marker.setMap(null);
                         }
@@ -149,6 +150,7 @@ function library(window, google, List) {
                     markers.forEach(function(marker) {
                         if (self.markerClusterer) {
                             self.markerClusterer.addMarker(marker);
+                            marker.inCluster = true;
                         } else {
                             marker.setMap(this.map);
                         }

@@ -31,10 +31,17 @@ function listenToLegend(){
 
     if (aerospace.is(':checked')){
         map.replaceBy(function(marker) {
-            return categoryCodes[marker.bizCode] == categories[0] && marker.map == null;
+            if (categoryCodes[marker.bizCode] == categories[0] && marker.inCluster == false){
+                $("#" + marker.id).show()
+                marker.allowCategory = true;
+            }
+            return categoryCodes[marker.bizCode] == categories[0] && marker.inCluster == false;
         });       } else {
         map.removeBy(function(marker) {
-            $("#"+marker.id).hide();
+            if (categoryCodes[marker.bizCode] == categories[0]) {
+                $("#" + marker.id).hide();
+                marker.allowCategory = false;
+            }
             return categoryCodes[marker.bizCode] == categories[0];
         });
     }
@@ -42,65 +49,107 @@ function listenToLegend(){
 
     if (food.is(':checked')){
         map.replaceBy(function(marker) {
-            return categoryCodes[marker.bizCode] == categories[1] && marker.map == null;
+            if (categoryCodes[marker.bizCode] == categories[1] && marker.inCluster == false){
+                $("#" + marker.id).show();
+                marker.allowCategory = true;
+            }
+            return categoryCodes[marker.bizCode] == categories[1] && marker.inCluster == false;
         });
     } else {
         map.removeBy(function(marker) {
-            $("#"+marker.id).hide();
+            if (categoryCodes[marker.bizCode] == categories[1]) {
+                $("#" + marker.id).hide();
+                marker.allowCategory = false;
+            }
             return categoryCodes[marker.bizCode] == categories[1];
         });
     }
 
     if (chemical.is(':checked')){
         map.replaceBy(function(marker) {
-            return categoryCodes[marker.bizCode] == categories[2] && marker.map == null;
+            if (categoryCodes[marker.bizCode] == categories[2] && marker.inCluster == false){
+                $("#" + marker.id).show();
+                marker.allowCategory = true;
+            }
+            return categoryCodes[marker.bizCode] == categories[2] && marker.inCluster == false;
         });
     } else {
         map.removeBy(function(marker) {
-            $("#"+marker.id).hide();
+            if (categoryCodes[marker.bizCode] == categories[2]) {
+                $("#" + marker.id).hide();
+                marker.allowCategory = false;
+            }
             return categoryCodes[marker.bizCode] == categories[2];
         });
     }
 
     if (construction.is(':checked')){
         map.replaceBy(function(marker) {
-            return categoryCodes[marker.bizCode] == categories[3] && marker.map == null;
+            if (categoryCodes[marker.bizCode] == categories[3] && marker.inCluster == false){
+                $("#" + marker.id).show();
+                marker.allowCategory = true;
+            }
+            return categoryCodes[marker.bizCode] == categories[3] && marker.inCluster == false;
         });
     } else {
         map.removeBy(function(marker) {
-            $("#"+marker.id).hide();
+            if (categoryCodes[marker.bizCode] == categories[3]) {
+                $("#" + marker.id).hide();
+                marker.allowCategory = false;
+            }
             return categoryCodes[marker.bizCode] == categories[3];
         });
     }
 
     if (machinery.is(':checked')){
         map.replaceBy(function(marker) {
-            return categoryCodes[marker.bizCode] == categories[4] && marker.map == null;
+            if (categoryCodes[marker.bizCode] == categories[4] && marker.inCluster == false){
+                $("#" + marker.id).show();
+                marker.allowCategory = true;
+            }
+            return categoryCodes[marker.bizCode] == categories[4] && marker.inCluster == false;
         });
     } else {
         map.removeBy(function(marker) {
-            $("#"+marker.id).hide();
+            if (categoryCodes[marker.bizCode] == categories[4]) {
+                $("#" + marker.id).hide();
+                marker.allowCategory = false;
+            }
             return categoryCodes[marker.bizCode] == categories[4];
         });
     }
 
     if (medical.is(':checked')){
         map.replaceBy(function(marker) {
-            return categoryCodes[marker.bizCode] == categories[5] && marker.map == null;
+            if (categoryCodes[marker.bizCode] == categories[5] && marker.inCluster == false){
+                $("#" + marker.id).show();
+                marker.allowCategory = true;
+            }
+            return categoryCodes[marker.bizCode] == categories[5] && marker.inCluster == false;
         });
     } else {
         map.removeBy(function(marker) {
-            $("#"+marker.id).hide();
+            if (categoryCodes[marker.bizCode] == categories[5]) {
+                $("#" + marker.id).hide();
+                marker.allowCategory = false;
+            }
             return categoryCodes[marker.bizCode] == categories[5];
         });
     }
 
     if (other.is(':checked')){
         map.replaceBy(function(marker) {
-            return categoryCodes[marker.bizCode] == undefined && marker.map == null;
+            if (categoryCodes[marker.bizCode] == undefined && marker.inCluster == false){
+                $("#" + marker.id).show();
+                marker.allowCategory = true;
+            }
+            return categoryCodes[marker.bizCode] == undefined && marker.inCluster == false;
         });       } else {
         map.removeBy(function(marker) {
-            $("#"+marker.id).hide();
+            if (categoryCodes[marker.bizCode] == undefined) {
+                $("#" + marker.id).hide();
+                marker.allowCategory = false;
+            }
             return categoryCodes[marker.bizCode] == undefined;
         });
     }
