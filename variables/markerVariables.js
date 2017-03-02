@@ -19,7 +19,7 @@ var bizCode;
 
 var markers = [];
 
-var categories = ['Aerospace/Outerspace',
+var categories = ['Aerospace and Outerspace',
                 'Food and Beverage',
                 'Chemical and Plastics',
                 'Construction and Metal Materials',
