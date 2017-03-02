@@ -23,7 +23,7 @@ $(document).ready(function (){
                         return marker.id == previousState[i] && marker.inCluster == false && marker.allowCategory == true;
                     });
                     map.markers.items.forEach(function (marker) {
-                        if(marker.id == previousState[i] && marker.inCluster == false && marker.allowCategory == true){
+                        if(marker.id == previousState[i] && marker.allowCategory == true){
                             $("#" + previousState[i]).show();
                         }
                     });
