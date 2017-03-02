@@ -22,7 +22,11 @@ $(document).ready(function (){
                     map.replaceBy(function (marker) {
                         return marker.id == previousState[i] && marker.inCluster == false && marker.allowCategory == true;
                     });
-                    $("#" + previousState[i]).show();
+                    map.markers.items.forEach(function (marker) {
+                        if(marker.id == previousState[i] && marker.inCluster == false && marker.allowCategory == true){
+                            $("#" + previousState[i]).show();
+                        }
+                    });
                 }
             }
             //push to mementoStack when last key != backspace
@@ -43,7 +47,9 @@ $(document).ready(function (){
                 mementoStack = [];
                 searchBar.fadeIn().html('').css("border", "0px solid red");
                 map.markers.items.forEach(function (marker) {
-                    $("#" + marker.id).show();
+                    if(marker.inCluster == false && marker.allowCategory == true){
+                        $("#" + marker.id).show();
+                    }
                 });
                 map.replaceBy(function (marker) {
                     return marker.inCluster == false && marker.allowCategory == true;

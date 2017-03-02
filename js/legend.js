@@ -32,7 +32,7 @@ function listenToLegend(){
     if (aerospace.is(':checked')){
         map.replaceBy(function(marker) {
             if (categoryCodes[marker.bizCode] == categories[0] && marker.inCluster == false){
-                $("#" + marker.id).show()
+                $("#" + marker.id).show();
                 marker.allowCategory = true;
             }
             return categoryCodes[marker.bizCode] == categories[0] && marker.inCluster == false;
