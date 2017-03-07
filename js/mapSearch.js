@@ -9,7 +9,15 @@ var matches = [];
 $(document).ready(function (){
     searchBar.on("keyup", function(e){
         var searchResult = new RegExp('^' + searchBar.val() + '.*', 'i');
-        console.log(searchResult);
+        if (searchBar.val().length >= 4){
+            var keywordResult = new RegExp(searchBar.val() + '.*', 'i');
+            map.replaceBy(function (marker) {
+                if (keywordResult.test(marker.keywords) && marker.inCluster == false && marker.allowCategory == true) {
+                    $("#" + marker.id).show();
+                }
+                return keywordResult.test(marker.keywords)&& marker.inCluster == false && marker.allowCategory == true;
+            });
+        }
         if (searchResult == "/^.*/i" && mementoStack[0] == null ) {
             //do nothing
             //this keeps it from refreshing when backspace is hit before typing.
@@ -42,6 +50,10 @@ $(document).ready(function (){
 
             if (matches[0] == null) {
                 searchBar.fadeIn().html('').css("border", "3px solid red");
+                map.removeBy(function (marker) {
+                    $("#"+marker.id).hide();
+                    return marker;
+                })
             }
             else if (searchResult == "/^.*/i") {
                 mementoStack = [];
@@ -74,4 +86,5 @@ $(document).ready(function (){
 
         bizList.scrollTop = 0;
     });
+
 });

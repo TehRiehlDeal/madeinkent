@@ -35,6 +35,7 @@ function getMarkers(callback) {
                 counter++;
                 latitude = false;
                 longitude = false;
+                keywords = result['KEYWORDS'];
 
                 var bizDiv = document.createElement("div");
 
@@ -52,7 +53,8 @@ function getMarkers(callback) {
                     id: id,
                     title: title,
                     inCluster: true,
-                    allowCategory: true
+                    allowCategory: true,
+                    keywords: keywords
                 };
 
 
