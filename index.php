@@ -71,7 +71,9 @@
                 <div id="bizSearch" class="form-group">
                     <form class="form-inline">
                         <label for="search">Search:</label>
-                        <input type="text" name="search" id="search" class="form-control">
+                        <input type="text" name="search" id="search" class="form-control"><br>
+                        <label>Search by Business Name: <input id="searchName" type="radio" name="searchType" value="name" checked></label>
+                        <label>Search by Business Keywords: <input id="searchKeyword" type="radio" name="searchType" value="keyword"></label>
                     </form>
                 </div>
 

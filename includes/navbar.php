@@ -21,7 +21,7 @@
             </a>
             <div class="navbar-intro">
                 <h3>Welcome to MadeInKent BETA</h3>
-                <p>See the interesting stuff made in the city of Kent, Washington</p>
+                <p>Kent Made, Washington Approved</p>
             </div>
         </div>
         <div id="navbar" class="navbar-collapse collapse ">

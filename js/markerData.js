@@ -111,10 +111,10 @@ function getMarkers(callback) {
                     });
                     thisMarker.setIcon({labelOrigin: new google.maps.Point(23,17),
                         url: icons[categoryCodes[bizCode]]});
-                    //console.log("thisMarker.getLabel()" + thisMarker.getLabel());
+
                 }
                 else {
-                    //console.log("Marker for " + placeTitle + " undefined.");
+
                     thisMarker.setLabel({
                         text: icons2['Other'],
                         fontFamily: 'FontAwesome',
@@ -130,11 +130,7 @@ function getMarkers(callback) {
                 var faSymbol = icons2['Other'];
                 if (typeof categoryCodes[bizCode] != 'undefined')
                     faSymbol = icons2[categoryCodes[bizCode]];
-                //console.log("infopanel icon should be defined");
 
-                //console.log(faSymbol);
-                //console.log(bizCode);
-                //console.log(typeof categoryCodes[bizCode]);
                 bizDiv.innerHTML =
                     "<h4><span class='font-awesome'>" + faSymbol + "</span> " + title.toCamel() + "</h4>" +
                     "<p>" + address + "</p>" +
@@ -142,7 +138,7 @@ function getMarkers(callback) {
                 bizList.appendChild(bizDiv);
                 bizDivHeight = bizDiv.getBoundingClientRect().height + 10;
                 allTitles.push(title);
-
+                allKeywords.push(keywords);
             });
 
             $.each(map.markers.items, function (marker) {
@@ -225,7 +221,7 @@ function openModal(marker) {
     addClass(document.getElementById('cue'), 'hidden');
 
     //infoWindow.setContent("<h5>" + marker.getTitle() + "</h5><p>" + address + "</p>");
-    //console.log(placeTitle.toCamel());
+
     infoModal.innerHTML =
         "<h2>" + map.markers.items[marker].title.toCamel() + "</h2>" +
         "<p>" + map.markers.items[marker].address +
