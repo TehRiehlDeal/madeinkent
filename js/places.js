@@ -29,7 +29,6 @@ function placeID(results, status) {
         // also: .types type(s) of place it is
         // place_id is what we want.
 
-        //results[0].place_id;
 
         placeService.getDetails({placeId: results[0].place_id}, placeDetails);
     }

@@ -133,11 +133,29 @@ function library(window, google, List) {
                     markers.forEach(function(marker) {
                         if (self.markerClusterer) {
                             self.markerClusterer.removeMarker(marker);
+                            marker.inCluster = false;
                         } else {
-                            marker.remove();
+                            marker.setMap(null);
                         }
                     });
                 });
+            },
+            /*
+             * This method is used to place markers back onto the map after they
+             * have been removed.
+             */
+            replaceBy: function(callback) {
+                var self = this;
+                self.markers.find(callback, function(markers) {
+                    markers.forEach(function(marker) {
+                        if (self.markerClusterer) {
+                            self.markerClusterer.addMarker(marker);
+                            marker.inCluster = true;
+                        } else {
+                            marker.setMap(this.map);
+                        }
+                    });
+                })
             },
             /*
              * This method retrieves a instance of the map itself.

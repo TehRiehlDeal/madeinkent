@@ -77,6 +77,11 @@ body:after {
 	/* height: 300px; */
 }
 
+#legend > div > p > label {
+	font-weight: 100;
+	margin: 0;
+}
+
 #legend p {
 	font-family: FontAwesome;
 	font-size: 1.5em;

@@ -6,7 +6,6 @@ function geocodeFromGoogle(title, address, token, coSize, bizCode) {
     // cacheGeocode(title, address, {lat: 47.4276132, lng: -122.2513806}, token);
     geocoder.geocode({'address': address}, function(results, status){
         if (status === google.maps.GeocoderStatus.OK){
-            //console.log(results[0].geometry.location.lat());
             cacheGeocode(address, results[0].geometry.location, token);
             addMarker(results[0].geometry.location.toJSON(), title, address, coSize, bizCode);
         } else {

@@ -4,6 +4,7 @@
 
 var mapLabel;
 var allTitles = [];
+var allKeywords = [];
 var bizList = document.getElementById('bizList');
 var bizDivHeight;
 var mapInstance;
